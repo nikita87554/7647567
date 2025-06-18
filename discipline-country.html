@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Discipline by Country</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button onclick="history.back()">← Back</button>
+  <h2 id="page-title"></h2>
+  <div class="container" id="medal-box"></div>
+
+  <script>
+    const country = JSON.parse(localStorage.getItem('selectedCountry'));
+    const discipline = JSON.parse(localStorage.getItem('selectedDiscipline'));
+    const title = document.getElementById('page-title');
+    const box = document.getElementById('medal-box');
+
+    if (!country || !discipline) {
+      title.textContent = "Data not found";
+    } else {
+      title.textContent = `${country.name} — ${discipline.name}`;
+
+      const medals = country.disciplines?.[discipline.name];
+
+      if (medals) {
+        const total = medals.gold + medals.silver + medals.bronze;
+
+        const html = `
+          <div class="card"><strong>🥇 Gold:</strong> ${medals.gold}</div>
+          <div class="card"><strong>🥈 Silver:</strong> ${medals.silver}</div>
+          <div class="card"><strong>🥉 Bronze:</strong> ${medals.bronze}</div>
+          <div class="card" style="background: #e0f7fa;"><strong>🏅 Total:</strong> ${total}</div>
+        `;
+        box.innerHTML = html;
+      } else {
+        box.innerHTML = `<p style="text-align:center;">No medals in ${discipline.name}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

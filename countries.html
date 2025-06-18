@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countries</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button onclick="history.back()">← Back</button>
+  <h2>Countries</h2>
+  <div id="country-list" class="container"></div>
+
+<script>
+  const data = [
+    {
+      id: 1,
+      name: "France",
+      code: "fr",
+      medals: { gold: 3, silver: 2, bronze: 1 }
+    },
+    {
+      id: 2,
+      name: "Japan",
+      code: "jp",
+      medals: { gold: 2, silver: 1, bronze: 3 }
+    }
+  ];
+
+  const list = document.getElementById('country-list');
+  data.forEach(country => {
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.innerHTML = `
+      <img src="assets/flags/${country.code}.png" alt="${country.name}" />
+      <span>${country.name}</span>
+    `;
+    el.onclick = () => {
+      localStorage.setItem('selectedCountry', JSON.stringify(country));
+      window.location.href = 'country.html';
+    };
+    list.appendChild(el);
+  });
+</script>
+
+</body>
+</html>

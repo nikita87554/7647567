@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Discipline by Countries</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button onclick="history.back()">← Back</button>
+  <h2 id="discipline-name"></h2>
+  <div id="country-list" class="container"></div>
+
+  <script>
+    const discipline = JSON.parse(localStorage.getItem('selectedDiscipline'));
+    const disciplineName = discipline?.name || "Unknown";
+    document.getElementById('discipline-name').textContent = disciplineName;
+
+    fetch('http://localhost:3000/countries')
+      .then(res => res.json())
+      .then(countries => {
+        const list = document.getElementById('country-list');
+        countries.forEach(country => {
+          const medals = country.disciplines?.[disciplineName];
+          if (medals) {
+            const total = medals.gold + medals.silver + medals.bronze;
+            const el = document.createElement('div');
+            el.className = 'card';
+            el.innerHTML = `
+              <img src="assets/flags/${country.code}.png" alt="${country.name}" />
+              <div>
+                <strong>${country.name}</strong><br>
+                <small>🏅 Total: ${total}</small>
+              </div>
+            `;
+            el.onclick = () => {
+              localStorage.setItem('selectedCountry', JSON.stringify(country));
+              window.location.href = 'discipline-country.html';
+            };
+            list.appendChild(el);
+          }
+        });
+      });
+  </script>
+</body>
+</html>

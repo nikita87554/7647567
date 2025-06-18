@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medal Count by Discipline</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button onclick="history.back()">← Back</button>
+  <h2 id="page-title"></h2>
+  <div id="discipline-list" class="container"></div>
+
+  <script>
+    const country = JSON.parse(localStorage.getItem('selectedCountry'));
+    const medalType = localStorage.getItem('medalType');
+    const disciplineList = document.getElementById('discipline-list');
+    const title = document.getElementById('page-title');
+
+    const medalEmoji = {
+      gold: '🥇 Gold',
+      silver: '🥈 Silver',
+      bronze: '🥉 Bronze'
+    };
+
+    title.textContent = `${country.name} — ${medalEmoji[medalType]} Medals`;
+
+    const disciplines = country.disciplines;
+
+    for (const [disciplineName, medals] of Object.entries(disciplines)) {
+      const count = medals[medalType];
+      if (count > 0) {
+        const el = document.createElement('div');
+        el.className = 'card';
+        el.innerHTML = `
+          <div>
+            <strong>${disciplineName}</strong><br>
+            <small>${medalEmoji[medalType]}: ${count}</small>
+          </div>
+        `;
+        disciplineList.appendChild(el);
+      }
+    }
+
+    if (disciplineList.innerHTML === '') {
+      disciplineList.innerHTML = `<p style="text-align:center;">No ${medalEmoji[medalType]} medals found.</p>`;
+    }
+  </script>
+</body>
+</html>

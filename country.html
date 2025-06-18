@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Country Details</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button onclick="history.back()">← Back</button>
+  <h2 id="country-name"></h2>
+  <div class="container" id="medals-container"></div>
+
+  <script>
+    const country = JSON.parse(localStorage.getItem('selectedCountry'));
+    if (!country) {
+      document.getElementById('country-name').textContent = 'No country selected';
+    } else {
+      document.getElementById('country-name').textContent = country.name;
+
+      const medals = [
+        { type: 'gold', label: '🥇 Gold' },
+        { type: 'silver', label: '🥈 Silver' },
+        { type: 'bronze', label: '🥉 Bronze' }
+      ];
+
+      const container = document.getElementById('medals-container');
+
+      medals.forEach(medal => {
+        const count = country.medals[medal.type];
+        const btn = document.createElement('button');
+        btn.className = 'medal';
+        btn.textContent = `${medal.label}: ${count}`;
+        btn.onclick = () => {
+          localStorage.setItem('medalType', medal.type);
+          window.location.href = 'medal-count.html';
+        };
+        container.appendChild(btn);
+      });
+
+      const total = country.medals.gold + country.medals.silver + country.medals.bronze;
+      const totalText = document.createElement('p');
+      totalText.style.marginTop = '1rem';
+      totalText.style.fontWeight = 'bold';
+      totalText.textContent = `🏆 Total: ${total}`;
+      container.appendChild(totalText);
+    }
+  </script>
+</body>
+</html>

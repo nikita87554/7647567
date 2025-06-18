@@ -1,0 +1,65 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "name": "France",
+      "code": "fr",
+      "medals": {
+        "gold": 5,
+        "silver": 3,
+        "bronze": 2
+      },
+      "disciplines": {
+        "Swimming": {
+          "gold": 2,
+          "silver": 1,
+          "bronze": 1
+        },
+        "Athletics": {
+          "gold": 3,
+          "silver": 2,
+          "bronze": 1
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Japan",
+      "code": "jp",
+      "medals": {
+        "gold": 3,
+        "silver": 2,
+        "bronze": 4
+      },
+      "disciplines": {
+        "Judo": {
+          "gold": 2,
+          "silver": 1,
+          "bronze": 2
+        },
+        "Athletics": {
+          "gold": 1,
+          "silver": 1,
+          "bronze": 2
+        }
+      }
+    }
+  ],
+  "disciplines": [
+    {
+      "id": 1,
+      "name": "Swimming",
+      "icon": "swimming.png"
+    },
+    {
+      "id": 2,
+      "name": "Athletics",
+      "icon": "athletics.png"
+    },
+    {
+      "id": 3,
+      "name": "Judo",
+      "icon": "judo.png"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f4f4;
+  color: #333;
+  padding: 1rem;
+  max-width: 430px; /* iPhone 14 Pro ширина */
+  margin: auto;
+}
+
+h1, h2 {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+button {
+  background: #0077cc;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #005fa3;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.card img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.medal {
+  display: inline-block;
+  margin: 0.5rem;
+  font-weight: bold;
+}
+.medal {
+  display: block;
+  width: 100%;
+  background-color: #ffcc00;
+  color: #333;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.medal:hover {
+  background-color: #e6b800;
+}
+.hero {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hero img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
